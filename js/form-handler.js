@@ -3,7 +3,13 @@ document.getElementById("myForm").addEventListener("submit", function(e) {
 
   const form = e.target;
   const formData = new FormData(form);
-
+  
+const captcha = formData.get("g-recaptcha-response");
+if (!captcha) {
+  alert("Please complete the reCAPTCHA.");
+  return;
+}
+  
   fetch("https://script.google.com/macros/s/AKfycbybJtD9pTFeW8FjEHcaUc1h_6HIrfZqcN_5GhuZwHLOtyt0NqWWwmevjeV-gucrzwU/exec", {
     method: "POST",
     body: formData
